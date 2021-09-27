@@ -2,18 +2,32 @@
 let questionNumber;
 let timer = 180;
 let timerInterval;
+let quizScore = 0;
+let timeScore = 0;
+let finalScore;
 
 // html object references
+const countdownClock = document.getElementById("timer");
 const questionContainer = document.getElementById("questionSection");
 const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answers");
 const startButton = document.getElementById("startButton");
-const countdownClock = document.getElementById("timer");
+const highScoreContainer = document.getElementById("scoreSection");
+const playerScoreElement = document.getElementById("player-score");
 
 // event listeners
 startButton.addEventListener("click", startGame);
 
 // functions
+function setTimeScore() {
+  timeScore = timer * 20
+  console.log(timeScore)
+}
+
+function setFinalScore() {
+  finalScore = timeScore + quizScore
+}
+
 function startClock() {
   countdownClock.innerHTML = timer;
   if (timer <= 0) {
@@ -24,12 +38,21 @@ function startClock() {
   }
 }
 
+function resetGameStats() {
+  clearInterval(timerInterval);
+  timer = 180
+  quizScore = 0
+  timeScore = 0
+  finalScore = 0
+}
+
 function startGame() {
-  startClock();
   startButton.classList.add("hide");
   answerButton.classList.remove("hide");
   questionNumber = 0;
   questionContainer.classList.remove("hide");
+  highScoreContainer.classList.add("hide");
+  startClock();
   while (answerButton.firstChild) {
     answerButton.removeChild(answerButton.firstChild);
   }
@@ -42,8 +65,9 @@ function showQuestion(question) {
     const button = document.createElement("button");
     button.innerText = answer.text;
     button.classList.add("btn");
-    if (answer.correct) {
+    if (answer.correct.dataset === true) {
       button.dataset.correct = answer.correct;
+      alert("pause");
     }
     button.addEventListener("click", selectAnswer);
     answerButton.appendChild(button);
@@ -73,12 +97,17 @@ function clearQuestion() {
 function endGame() {
   questionElement.innerHTML = "Time is up!"
   answerButton.classList.add("hide")
-  clearInterval(timerInterval);
   countdownClock.innerHTML = "";
-  timer = 180
 	clearQuestion();
+  setTimeScore();
+  setFinalScore();
 	startButton.innerText = "Play again";
 	startButton.classList.remove("hide");
+  playerScoreElement.innerText = "Score: " + finalScore;
+  highScoreContainer.classList.remove("hide")
+
+  // important that resetGameStats is called last
+  resetGameStats();
 }
 
 // question array
