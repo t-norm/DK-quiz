@@ -1,17 +1,31 @@
 // variables
 let questionNumber;
+let timer = 180;
+let timerInterval;
 
 // html object references
 const questionContainer = document.getElementById("questionSection");
 const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answers");
 const startButton = document.getElementById("startButton");
+const countdownClock = document.getElementById("timer");
 
 // event listeners
 startButton.addEventListener("click", startGame);
 
 // functions
+function startClock() {
+  countdownClock.innerHTML = timer;
+  if (timer <= 0) {
+    endGame();
+  } else {
+    timer -= 1;
+    timerInterval = setTimeout(startClock, 1000);
+  }
+}
+
 function startGame() {
+  startClock();
   startButton.classList.add("hide");
   answerButton.classList.remove("hide");
   questionNumber = 0;
@@ -53,6 +67,9 @@ function clearQuestion() {
 }
 
 function endGame() {
+  clearInterval(timerInterval);
+  countdownClock.innerHTML = "";
+  timer = 180
 	clearQuestion();
 	startButton.innerText = "Play again";
 	startButton.classList.remove("hide");
