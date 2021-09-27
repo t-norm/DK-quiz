@@ -1,6 +1,3 @@
-// persistence/local storage
-
-
 // variables
 let questionNumber;
 let timer = 180;
@@ -8,9 +5,6 @@ let timerInterval;
 let quizScore = 0;
 let timeScore = 0;
 let finalScore;
-let highScoreLimit = 5;
-
-var highScores = [];
 
 // html object references
 const countdownClock = document.getElementById("timer");
@@ -20,31 +14,18 @@ const answerButton = document.getElementById("answers");
 const startButton = document.getElementById("startButton");
 const highScoreContainer = document.getElementById("scoreSection");
 const playerScoreElement = document.getElementById("player-score");
-const saveScoreButton = document.getElementById("score-submit");
-const seeScoreButton = document.getElementById("see-score");
-const submitNameButton = document.getElementById("submit-name-button");
 
 // event listeners
 startButton.addEventListener("click", startGame);
-saveScoreButton.addEventListener("click", storeScore);
-seeScoreButton.addEventListener("click", getScore);
 
 // functions
-function storeScore() {
-
-}
-
-function getScore() {
-  
-}
-
 function setTimeScore() {
   timeScore = timer * 50
 }
 
 function setFinalScore() {
   finalScore = timeScore + quizScore
-  if (finalScore <= 250) {
+  if (finalScore < 0) {
     finalScore = 0
   }
 }
@@ -60,6 +41,7 @@ function startClock() {
 }
 
 function resetGameStats() {
+  clearInterval(timerInterval);
   timer = 180
   quizScore = 0
   timeScore = 0
@@ -67,7 +49,6 @@ function resetGameStats() {
 }
 
 function startGame() {
-  resetGameStats();
   startButton.classList.add("hide");
   answerButton.classList.remove("hide");
   questionNumber = 0;
@@ -117,7 +98,6 @@ function clearQuestion() {
 }
 
 function endGame() {
-  clearInterval(timerInterval);
   questionElement.innerHTML = "Time is up!"
   answerButton.classList.add("hide")
   countdownClock.innerHTML = "";
@@ -128,6 +108,9 @@ function endGame() {
 	startButton.classList.remove("hide");
   playerScoreElement.innerText = "Score: " + finalScore;
   highScoreContainer.classList.remove("hide")
+
+  // important that resetGameStats is called last
+  resetGameStats();
 }
 
 // question array
@@ -222,4 +205,4 @@ const questions = [
       { text: "The Orang-utang", correct: false }
     ]
   }
-];
+]
