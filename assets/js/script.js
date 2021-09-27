@@ -20,12 +20,14 @@ startButton.addEventListener("click", startGame);
 
 // functions
 function setTimeScore() {
-  timeScore = timer * 20
-  console.log(timeScore)
+  timeScore = timer * 50
 }
 
 function setFinalScore() {
   finalScore = timeScore + quizScore
+  if (finalScore < 0) {
+    finalScore = 0
+  }
 }
 
 function startClock() {
@@ -65,9 +67,9 @@ function showQuestion(question) {
     const button = document.createElement("button");
     button.innerText = answer.text;
     button.classList.add("btn");
-    if (answer.correct.dataset === true) {
+    if (answer.correct) {
       button.dataset.correct = answer.correct;
-      alert("pause");
+      quizScore += 250
     }
     button.addEventListener("click", selectAnswer);
     answerButton.appendChild(button);
@@ -85,6 +87,7 @@ function selectAnswer(e) {
   const selectedAnswer = e.target;
   if (!selectedAnswer.dataset.correct) {
     timer -= 30;
+    quizScore -= 250
   }
 }
 
