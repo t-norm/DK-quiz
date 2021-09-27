@@ -1,5 +1,6 @@
 // persistence/local storage
 
+
 // variables
 let questionNumber;
 let timer = 180;
@@ -7,6 +8,7 @@ let timerInterval;
 let quizScore = 0;
 let timeScore = 0;
 let finalScore;
+let highScoreLimit = 5
 
 // html object references
 const countdownClock = document.getElementById("timer");
@@ -16,7 +18,7 @@ const answerButton = document.getElementById("answers");
 const startButton = document.getElementById("startButton");
 const highScoreContainer = document.getElementById("scoreSection");
 const playerScoreElement = document.getElementById("player-score");
-const saveScoreButton = document.getElementById("submit-score");
+const saveScoreButton = document.getElementById("name-score-submit");
 const seeScoreButton = document.getElementById("see-score");
 
 // event listeners
