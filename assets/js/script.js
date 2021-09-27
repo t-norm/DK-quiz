@@ -1,3 +1,5 @@
+// persistence/local storage
+
 // variables
 let questionNumber;
 let timer = 180;
@@ -14,11 +16,23 @@ const answerButton = document.getElementById("answers");
 const startButton = document.getElementById("startButton");
 const highScoreContainer = document.getElementById("scoreSection");
 const playerScoreElement = document.getElementById("player-score");
+const saveScoreButton = document.getElementById("submit-score");
+const seeScoreButton = document.getElementById("see-score");
 
 // event listeners
 startButton.addEventListener("click", startGame);
+saveScoreButton.addEventListener("click", storeScore);
+seeScoreButton.addEventListener("click", getScore);
 
 // functions
+function storeScore() {
+
+}
+
+function getScore() {
+
+}
+
 function setTimeScore() {
   timeScore = timer * 50
 }
