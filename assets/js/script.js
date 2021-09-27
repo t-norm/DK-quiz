@@ -58,6 +58,10 @@ function selectAnswer(e) {
     questionNumber++;
     showQuestion(questions[questionNumber]);
   }
+  const selectedAnswer = e.target;
+  if (!selectedAnswer.dataset.correct) {
+    timer -= 30;
+  }
 }
 
 function clearQuestion() {
@@ -67,6 +71,8 @@ function clearQuestion() {
 }
 
 function endGame() {
+  questionElement.innerHTML = "Time is up!"
+  answerButton.classList.add("hide")
   clearInterval(timerInterval);
   countdownClock.innerHTML = "";
   timer = 180
