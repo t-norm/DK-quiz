@@ -8,10 +8,9 @@ let timerInterval;
 let quizScore = 0;
 let timeScore = 0;
 let finalScore;
-let playerName = "";
 let highScoreLimit = 5;
 
-var highScores = [{name: "", score: ""}];
+var highScores = [];
 
 // html object references
 const countdownClock = document.getElementById("timer");
@@ -21,8 +20,9 @@ const answerButton = document.getElementById("answers");
 const startButton = document.getElementById("startButton");
 const highScoreContainer = document.getElementById("scoreSection");
 const playerScoreElement = document.getElementById("player-score");
-const saveScoreButton = document.getElementById("name-score-submit");
+const saveScoreButton = document.getElementById("score-submit");
 const seeScoreButton = document.getElementById("see-score");
+const submitNameButton = document.getElementById("submit-name-button");
 
 // event listeners
 startButton.addEventListener("click", startGame);
@@ -31,7 +31,7 @@ seeScoreButton.addEventListener("click", getScore);
 
 // functions
 function storeScore() {
-  
+
 }
 
 function getScore() {
@@ -222,4 +222,4 @@ const questions = [
       { text: "The Orang-utang", correct: false }
     ]
   }
-]
+];
