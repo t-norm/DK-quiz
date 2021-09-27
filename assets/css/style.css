@@ -5,34 +5,20 @@
 	padding: 0;
 }
 
+.hide {
+	display: none;
+}
+
 body {
-	display: flex;
+	display: grid;
 	width: 100%;
 	height: auto;
 	justify-content: center;
-	align-items: center;
 	text-align: center;
-	background-image: url("../images/wallpaper.PNG");
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-header {
-	width: 100%;
-	height: auto;
-	background-color: #202020;
-	filter: drop-shadow(-2px 0px 2px black);
+	justify-items: center;
 }
 
 header img {
 	width: 3%;
 	height: auto;
-}
-
-footer {
-	width: 100%;
-	height: auto;
-	background-color: #202020;
-	filter: drop-shadow(-2px 0px 2px black);
-	color: white;
 }
