@@ -1,5 +1,5 @@
 // persistence
-window.onload(getHighScoreData());
+
 
 // variables
 let questionNumber;
@@ -11,8 +11,7 @@ let sessionScore = 0;
 let finalScore;
 let username = "";
 const maxHighScores = 5;
-const highScoresArray = [];
-const playerNamesArray = [];
+const playerData = {playerName: "", score: ""}
 
 // html object references
 const countdownClock = document.getElementById("timer");
@@ -36,22 +35,6 @@ showScoresButton.addEventListener("click", showHighScores);
 playerName.addEventListener("change", stateHandle);
 
 // functions
-function getHighScoreData() {
-  var getName = JSON.stringify(playerNamesArray);
-  localStorage.getItem("playerNames", getName);
-
-  var getScore = JSON.stringify(highScoresArray);
-  localStorage.getItem("highScores", getScore);
-}
-
-function storeHighScoreData() {
-  var storeName = JSON.stringify(playerNamesArray);
-  localStorage.setItem("playerNames", storeName);
-
-  var storeScore = JSON.stringify(highScoresArray);
-  localStorage.setItem("highScores", storeScore);
-}
-
 function showHighScores() {
   highScoresOl.classList.remove("hide");
 }
@@ -65,9 +48,6 @@ function stateHandle() {
 }
 
 function setPlayerNameAndScore() {
-  getHighScoreData();
-  storeHighScoreData();
-
   username = playerName.value
   playerNameLabel.classList.add("hide");
   playerName.classList.add("hide");
@@ -75,7 +55,7 @@ function setPlayerNameAndScore() {
   playerNamesArray.push(username);
   highScoresArray.push(finalScore);
 
-  storeHighScoreData();
+
 }
 
 function setTimeScore() {
