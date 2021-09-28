@@ -10,6 +10,7 @@ let timeScore = 0;
 let sessionScore = 0;
 let finalScore;
 let username = ""
+const highScores = [];
 
 // html object references
 const countdownClock = document.getElementById("timer");
@@ -20,6 +21,7 @@ const startButton = document.getElementById("startButton");
 const highScoreContainer = document.getElementById("scoreSection");
 const playerScoreElement = document.getElementById("player-score");
 
+const playerNameLabel = document.getElementById("playerNameLabel");
 const playerName = document.getElementById("playerName");
 const saveScoreButton = document.getElementById("submit-score");
 
@@ -30,6 +32,10 @@ saveScoreButton.addEventListener("click", setPlayerNameAndScore);
 // functions
 function setPlayerNameAndScore() {
   username = playerName.value
+  playerNameLabel.classList.add("hide");
+  playerName.classList.add("hide");
+  saveScoreButton.classList.add("hide");
+
   console.log(username);
   console.log(finalScore);
 }
@@ -56,6 +62,7 @@ function startClock() {
 }
 
 function resetGameState() {
+  countdownClock.classList.remove("hide");
   clearInterval(timerInterval);
   timer = 180
   quizScore = 0
@@ -115,6 +122,10 @@ function clearQuestion() {
 }
 
 function endGame() {
+  playerNameLabel.classList.remove("hide");
+  playerName.classList.remove("hide");
+  saveScoreButton.classList.remove("hide");
+  countdownClock.classList.add("hide");
   questionElement.innerHTML = "Time is up!"
   answerButton.classList.add("hide")
   countdownClock.innerHTML = "";
