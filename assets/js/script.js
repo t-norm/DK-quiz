@@ -9,8 +9,10 @@ let quizScore = 0;
 let timeScore = 0;
 let sessionScore = 0;
 let finalScore;
-let username = ""
-const highScores = [];
+let username = "";
+const maxHighScores = 5;
+const highScoresArray = [];
+const playerNamesArray = [];
 
 // html object references
 const countdownClock = document.getElementById("timer");
@@ -24,13 +26,20 @@ const playerScoreElement = document.getElementById("player-score");
 const playerNameLabel = document.getElementById("playerNameLabel");
 const playerName = document.getElementById("playerName");
 const saveScoreButton = document.getElementById("submit-score");
+const showScoresButton = document.getElementById("showScoresButton");
+const highScoresOl = document.getElementById("highScoresOl");
 
 // event listeners
 startButton.addEventListener("click", startGame);
 saveScoreButton.addEventListener("click", setPlayerNameAndScore);
+showScoresButton.addEventListener("click", showHighScores);
 playerName.addEventListener("change", stateHandle);
 
 // functions
+function showHighScores() {
+  highScoresOl.classList.remove("hide");
+}
+
 function stateHandle() {
   if (playerName.value === "" || playerName.value === null) {
     saveScoreButton.disabled = true;
@@ -44,13 +53,16 @@ function setPlayerNameAndScore() {
   playerNameLabel.classList.add("hide");
   playerName.classList.add("hide");
   saveScoreButton.classList.add("hide");
-  highScores.push(username)
-  highScores.push(finalScore)
+  playerNamesArray.push(username);
+  highScoresArray.push(finalScore);
 
-  console.log(username);
-  console.log(finalScore);
-  console.log(highScores[0]);
-  console.log(highScores[1]);
+  var storeName = JSON.stringify(playerNamesArray);
+  localStorage.setItem("playerNames", storeName);
+
+  var storeScore = JSON.stringify(highScoresArray);
+  localStorage.setItem("highScores", storeScore);
+
+
 }
 
 function setTimeScore() {
@@ -76,6 +88,7 @@ function startClock() {
 
 function resetGameState() {
   saveScoreButton.disabled = true;
+  highScoresOl.classList.add("hide");
   countdownClock.classList.remove("hide");
   clearInterval(timerInterval);
   username = "";
