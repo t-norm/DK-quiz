@@ -1,5 +1,9 @@
 // persistence
+savedPlayerData = JSON.parse(localStorage.getItem("playerData") || "[]");
 
+function storePlayerData() {
+  localStorage.setItem("playerData", JSON.stringify(playerData));
+}
 
 // variables
 let questionNumber;
@@ -52,10 +56,11 @@ function setPlayerNameAndScore() {
   playerNameLabel.classList.add("hide");
   playerName.classList.add("hide");
   saveScoreButton.classList.add("hide");
-  playerNamesArray.push(username);
-  highScoresArray.push(finalScore);
 
+  playerData["playerName"] = username;
+  playerData["score"] = finalScore
 
+  storePlayerData();
 }
 
 function setTimeScore() {
