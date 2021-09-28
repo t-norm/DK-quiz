@@ -1,10 +1,15 @@
+// persistence/localstorage
+
+
 // variables
 let questionNumber;
 let timer = 180;
 let timerInterval;
 let quizScore = 0;
 let timeScore = 0;
+let sessionScore = 0;
 let finalScore;
+let username = ""
 
 // html object references
 const countdownClock = document.getElementById("timer");
@@ -15,10 +20,20 @@ const startButton = document.getElementById("startButton");
 const highScoreContainer = document.getElementById("scoreSection");
 const playerScoreElement = document.getElementById("player-score");
 
+const playerName = document.getElementById("playerName");
+const saveScoreButton = document.getElementById("submit-score");
+
 // event listeners
 startButton.addEventListener("click", startGame);
+saveScoreButton.addEventListener("click", setPlayerNameAndScore);
 
 // functions
+function setPlayerNameAndScore() {
+  username = playerName.value
+  console.log(username);
+  console.log(finalScore);
+}
+
 function setTimeScore() {
   timeScore = timer * 50
 }
@@ -40,15 +55,17 @@ function startClock() {
   }
 }
 
-function resetGameStats() {
+function resetGameState() {
   clearInterval(timerInterval);
   timer = 180
   quizScore = 0
   timeScore = 0
+  sessionScore = 0
   finalScore = 0
 }
 
 function startGame() {
+  resetGameState();
   startButton.classList.add("hide");
   answerButton.classList.remove("hide");
   questionNumber = 0;
@@ -108,9 +125,7 @@ function endGame() {
 	startButton.classList.remove("hide");
   playerScoreElement.innerText = "Score: " + finalScore;
   highScoreContainer.classList.remove("hide")
-
-  // important that resetGameStats is called last
-  resetGameStats();
+  sessionScore = finalScore
 }
 
 // question array
