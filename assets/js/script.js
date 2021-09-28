@@ -28,8 +28,17 @@ const saveScoreButton = document.getElementById("submit-score");
 // event listeners
 startButton.addEventListener("click", startGame);
 saveScoreButton.addEventListener("click", setPlayerNameAndScore);
+playerName.addEventListener("change", stateHandle);
 
 // functions
+function stateHandle() {
+  if (playerName.value === "" || playerName.value === null) {
+    saveScoreButton.disabled = true;
+  } else {
+    saveScoreButton.disabled = false;
+  }
+}
+
 function setPlayerNameAndScore() {
   username = playerName.value
   playerNameLabel.classList.add("hide");
@@ -62,13 +71,16 @@ function startClock() {
 }
 
 function resetGameState() {
+  saveScoreButton.disabled = true;
   countdownClock.classList.remove("hide");
   clearInterval(timerInterval);
-  timer = 180
-  quizScore = 0
-  timeScore = 0
-  sessionScore = 0
-  finalScore = 0
+  username = "";
+  playerName.value = ""
+  timer = 180;
+  quizScore = 0;
+  timeScore = 0;
+  sessionScore = 0;
+  finalScore = 0;
 }
 
 function startGame() {
