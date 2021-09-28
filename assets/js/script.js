@@ -44,9 +44,13 @@ function setPlayerNameAndScore() {
   playerNameLabel.classList.add("hide");
   playerName.classList.add("hide");
   saveScoreButton.classList.add("hide");
+  highScores.push(username)
+  highScores.push(finalScore)
 
   console.log(username);
   console.log(finalScore);
+  console.log(highScores[0]);
+  console.log(highScores[1]);
 }
 
 function setTimeScore() {
@@ -137,7 +141,7 @@ function endGame() {
   playerNameLabel.classList.remove("hide");
   playerName.classList.remove("hide");
   saveScoreButton.classList.remove("hide");
-  countdownClock.classList.add("hide");
+  clearTimeout(timerInterval);
   questionElement.innerHTML = "Time is up!"
   answerButton.classList.add("hide")
   countdownClock.innerHTML = "";
