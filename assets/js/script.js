@@ -47,8 +47,10 @@ function showHighScores() {
 function stateHandle() {
   if (playerName.value === "" || playerName.value === null) {
     saveScoreButton.disabled = true;
+    saveScoreButton.classList.add("hide");
   } else {
     saveScoreButton.disabled = false;
+    saveScoreButton.classList.remove("hide");
   }
 }
 
@@ -156,7 +158,6 @@ function clearQuestion() {
 function endGame() {
   playerNameLabel.classList.remove("hide");
   playerName.classList.remove("hide");
-  saveScoreButton.classList.remove("hide");
   clearTimeout(timerInterval);
   questionElement.innerHTML = "Time is up!"
   answerButton.classList.add("hide")

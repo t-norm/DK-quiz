@@ -11,26 +11,28 @@
 	<body>
 		<header>
 			<img src="./assets/images/kong.PNG" />
-			<section id="timer">Time: 180</section>
+			<section class ="timer" id="timer">Time: 180</section>
 		</header>
 
 		<main class="quizSection">
-			<section class="hide" id="questionSection">
-			  <div id="question"></div>
-			  <div id="answers" class="buttonSection"></div>
-			</section>
+			<section class="quizCard">
+				<section class="hide" id="questionSection">
+				<div class="question" id="question"></div>
+				<div class="answer" id="answers" class="buttonSection"></div>
+				</section>
 
-			<section class="controls">
-			  <button class="start" id="startButton">Start</button>
-			</section>
+				<section class="controls">
+				<button class="start" id="startButton">Start</button>
+				</section>
 
-			<section class="hide" id="scoreSection">
-				<div id="player-score"></div>
-				<label for="playerName" id="playerNameLabel">Name: </label>
-  				<input type="text" id="playerName">
-				<button id="submit-score">Save Score</button>
-				<button id="showScoresButton">See High Scores</button>
-				<ol class="hide" id="highScoresOl"></ol>
+				<section class="hide" id="scoreSection">
+					<div class= "player-score" id="player-score"></div>
+					<label for="playerName" id="playerNameLabel">Name: </label>
+					<input type="text" id="playerName">
+					<button class="submit-score hide" id="submit-score">Save Score</button><br>
+					<button class="start" id="showScoresButton">See High Scores</button>
+					<ol class="highScoresOl hide" id="highScoresOl"></ol>
+				</section>
 			</section>
 		</main>
 
