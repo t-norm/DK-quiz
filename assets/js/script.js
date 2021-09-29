@@ -36,6 +36,11 @@ playerName.addEventListener("keyup", stateHandle);
 // functions
 function showHighScores() {
   highScoresOl.classList.remove("hide");
+  highScoresOl.innerHTML = playerData
+  .map(sessionScore => {
+    return `<li class="highScores">${sessionScore.name} - ${sessionScore.score}</li>`;
+  })
+  .join("");
 }
 
 function stateHandle() {
@@ -54,9 +59,11 @@ function setPlayerNameAndScore() {
 
   const sessionScore = {name: username, score: finalScore};
   playerData.push(sessionScore);
-  playerData.sort((a,b) => b.sessionScore - a.sessionScore);
+  playerData.sort((a,b) => b.score - a.score);
   playerData.splice(maxHighScores);
   localStorage.setItem("playerData", JSON.stringify(playerData));
+
+  showHighScores();
 }
 
 function setTimeScore() {
