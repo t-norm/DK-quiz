@@ -1,9 +1,5 @@
 // persistence
-savedPlayerData = JSON.parse(localStorage.getItem("playerData") || "[]");
-
-function storePlayerData() {
-  localStorage.setItem("playerData", JSON.stringify(playerData));
-}
+let playerData = JSON.parse(localStorage.getItem("playerData") || "[]");
 
 // variables
 let questionNumber;
@@ -15,7 +11,6 @@ let sessionScore = 0;
 let finalScore;
 let username = "";
 const maxHighScores = 5;
-const playerData = {playerName: "", score: ""}
 
 // html object references
 const countdownClock = document.getElementById("timer");
@@ -36,7 +31,7 @@ const highScoresOl = document.getElementById("highScoresOl");
 startButton.addEventListener("click", startGame);
 saveScoreButton.addEventListener("click", setPlayerNameAndScore);
 showScoresButton.addEventListener("click", showHighScores);
-playerName.addEventListener("change", stateHandle);
+playerName.addEventListener("keyup", stateHandle);
 
 // functions
 function showHighScores() {
@@ -57,10 +52,11 @@ function setPlayerNameAndScore() {
   playerName.classList.add("hide");
   saveScoreButton.classList.add("hide");
 
-  playerData["playerName"] = username;
-  playerData["score"] = finalScore
-
-  storePlayerData();
+  const sessionScore = {name: username, score: finalScore};
+  playerData.push(sessionScore);
+  playerData.sort((a,b) => b.sessionScore - a.sessionScore);
+  playerData.splice(maxHighScores);
+  localStorage.setItem("playerData", JSON.stringify(playerData));
 }
 
 function setTimeScore() {
