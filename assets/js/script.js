@@ -35,6 +35,7 @@ playerName.addEventListener("keyup", stateHandle);
 
 // functions
 function showHighScores() {
+  showScoresButton.classList.add("hide");
   highScoresOl.classList.remove("hide");
   highScoresOl.innerHTML = playerData
   .map(sessionScore => {
@@ -90,6 +91,7 @@ function startClock() {
 function resetGameState() {
   saveScoreButton.disabled = true;
   highScoresOl.classList.add("hide");
+  showScoresButton.classList.remove("hide");
   countdownClock.classList.remove("hide");
   clearInterval(timerInterval);
   username = "";
