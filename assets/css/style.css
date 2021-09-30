@@ -70,7 +70,6 @@ main {
 	background-color: white;
 	border-radius: 20px;
 	padding: 30px 30px;
-	/* max-width: 850px; */
 	width: auto;
 	height: auto;
 	filter: drop-shadow(7px 7px 4px black);
@@ -116,7 +115,7 @@ main {
 	font-weight: bold;
 	font-size: 2vw;
 	padding: 5px 5px;
-	margin: 0px 10px;
+	margin: 10px 0px 0px 0px;
 }
 
 .highScores {
@@ -130,6 +129,13 @@ main {
 .playerNameLabel {
 	font-weight: bold;
 	font-size: 1.5vw;
+}
+
+.playerNameInput {
+	height: 50px;
+	border-radius: 5px;
+	font-size: 1.3vw;
+	width: 55%;
 }
 
 footer {
