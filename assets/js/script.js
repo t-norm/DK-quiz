@@ -145,7 +145,6 @@ function selectAnswer(e) {
   const selectedAnswer = e.target;
   if (!selectedAnswer.dataset.correct) {
     timer -= 30;
-    quizScore -= 250
   }
 }
 
